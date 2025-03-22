@@ -1,4 +1,4 @@
-import time
+import time, random
 from factory import create_npc, NPCType, create_player, PlayerType
 #executar
 #python3 RPG/client.py 
@@ -6,13 +6,14 @@ from factory import create_npc, NPCType, create_player, PlayerType
 # Criando os personagens
 dragon = create_npc(NPCType.Dragon)
 mage=create_npc(NPCType.Mage)
-
+a=random.randint(1,2)
 mario = create_player(PlayerType.Mario)
 joker = create_player(PlayerType.Joker)
 
 #mage = Mage()
 #dragon = Dragon()
 
+#usar o random pra gerar um player e dois npcs
 # Loop da batalha até que um deles morra
 while dragon.saude > 0 and mage.saude > 0:
     
