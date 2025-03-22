@@ -1,5 +1,5 @@
 from models import (
-    NPC, Dragon, Mage, Player
+    NPC, Dragon, Mage, Player, Mario, Joker
 )
 from enum import Enum #pra enumerar os tipos
 
