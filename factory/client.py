@@ -2,7 +2,7 @@ from image_factory import create_image, ImageType
 #acoplamento no JPG E PNG, dependencia
 #from models import Image, JPG, PNG 
 
-#python3 factoy/client.py 
+#python3 factory/client.py 
 
 if __name__ == "__main__":
     ### CLASSE CLIENTE (1 of 50) ###
