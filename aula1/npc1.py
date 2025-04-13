@@ -33,6 +33,7 @@ vermithor=Dragon("vermithor")
 strange= Mage("strange")
 while vermithor.saude>0 and strange.saude>0:
     vermithor.atacar(strange)
+    if strange.saude==0: break
     strange.atacar(vermithor)
     
 print("Saude do dragao:",vermithor.saude)
