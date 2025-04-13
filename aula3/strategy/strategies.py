@@ -1,8 +1,6 @@
 import hashlib
 from abc import ABC, abstractmethod
 
-
-
 class PasswordStrategy(ABC):
 #1 interface da estrategia
 #  define o contrato, todos os outros vao ter que utilizar o encrypt
@@ -27,12 +25,12 @@ class SHA256Strategy(PasswordStrategy):
 
     #FACTORY DA STRATEGIES
 
-def create(type: str) -> PasswordStrategy:
-    if type == "MD5": 
+def create(choice: int) -> PasswordStrategy:
+    if type == 1: 
         return MD5Strategy()
-    elif type == "SHA1":
+    elif type == 2:
         return SHA1Strategy()
-    elif type == "SHA256":
+    elif type == 3:
         return SHA256Strategy()
     else:
         raise ValueError("invalid choice")

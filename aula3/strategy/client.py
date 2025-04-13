@@ -1,7 +1,7 @@
 from rich import print #pip install rich
 # from strategies import encrypt_md5, encrypt_sha1 esta linha nao e mais necessario
-from context import HashContext
-from strategies import create
+from context import HashContext, select_strategy
+
 # def select_strategy():
 #     """ 
 #     Helper function - read user choice
@@ -28,16 +28,7 @@ from strategies import create
 if __name__ == "__main__":
     """ Runtime """
 
-    print("-"*40)
-    print("Algoritmos Hash disponiveis")
-    print("-"*40)
-    print("""
-    MD5
-    SHA1
-    SHA256
-    """)
-    #factory
-    strategy = create(input("Digite o Hash:"))
+    strategy = select_strategy()
     password = input("Digite a senha: ")
 
     #print(encrypt_sha1(password))
