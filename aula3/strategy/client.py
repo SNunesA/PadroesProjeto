@@ -29,7 +29,7 @@ if __name__ == "__main__":
     """ Runtime """
 
     strategy = select_strategy()
-    password = input("Digite a senha: ")
+    password = input("Digite a senha com no minimo 8 caracteres: ")
 
     #print(encrypt_sha1(password))
     #print(encrypt_md5(password))

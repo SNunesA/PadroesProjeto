@@ -29,5 +29,7 @@ class HashContext():
 
     def hash(self,password:str) -> str:
         "ponto de acesso ao cliente"
+        if len(password) < 8:
+            raise ValueError("senha não cumpriu o numero minimo de 8 caracteres")
         return self.strategy.encrypt(password) #nao sabemos qual estrategia vai ser executada
         
