@@ -26,11 +26,11 @@ class SHA256Strategy(PasswordStrategy):
     #FACTORY DA STRATEGIES
 
 def create(choice: int) -> PasswordStrategy:
-    if type == 1: 
+    if choice == 1: 
         return MD5Strategy()
-    elif type == 2:
+    elif choice == 2:
         return SHA1Strategy()
-    elif type == 3:
+    elif choice == 3:
         return SHA256Strategy()
     else:
         raise ValueError("invalid choice")
