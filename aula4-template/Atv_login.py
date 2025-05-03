@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 from typing import final
 
 class Usuario(ABC):
+    #metodo abstrato
     def validar_credenciais():
-        
+    
     #metodos concretos
     def logar():
 
@@ -12,13 +13,20 @@ class Usuario(ABC):
     def redirecionar():
     
     #metodo template
+    @final
     def Login(self): 
-        #metodo abstrato
+       
         self.validar_credenciais()
+        self.logar()
+        self.carregar_preferencias()
+        self.redirecionar()
+
 
 class Funcionario(Usuario): #email
 
+
 class Cliente(Usuario): #google e github
+
 
 class Plataforma(ABC): 
     @abstractmethod
