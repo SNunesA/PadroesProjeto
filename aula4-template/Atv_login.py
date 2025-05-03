@@ -7,9 +7,9 @@ class Usuario(ABC):
     
     #metodos concretos
     def logar():
-
+        print("usuario logado")
     def carregar_preferencias():
-
+        
     def redirecionar():
     
     #metodo template
@@ -43,3 +43,5 @@ class Github(Plataforma):
 class Email(Plataforma):
     def __init__(self, email:str):
         super().__init__(email)
+
+if __name__ == "__main__":
