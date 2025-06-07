@@ -1,0 +1,6 @@
+
+{"NPCS":[
+{"nome":"Dragon", "saude":"100", "ataque":"30", "defesa":"5","elemento":"agua"},
+{"nome":"Mage", "saude":"100", "ataque":"15", "defesa":"15","elemento":"fogo"}
+]
+}
