@@ -29,7 +29,8 @@ for c in sistema["NPCS"]:
     if c['elemento'] == "agua":
         npc1=aguaFactory.createNPCAgua(c['nome'])
     
-print(npc1)
+print(npc1.nome)
+print(npc1.elemento)
 
         
     
