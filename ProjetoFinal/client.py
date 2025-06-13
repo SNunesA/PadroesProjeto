@@ -26,13 +26,14 @@ if __name__ == "__main__":
             lista.append(npc)
     
     jogador1=Create_Player(dicionario['Player'][0])
-    print(jogador1)
-    print('NPCs')
-    for c in lista: 
-        print(c)
 
     equipado=input("Deseja equipar espada?(s/n)")
     if equipado == "s":
         espada=Espada(jogador1)
-    print(espada.status)
+        print(espada.status)
+    else:
+        print(jogador1)
     
+    print('NPCs')
+    for c in lista: 
+        print(c)
