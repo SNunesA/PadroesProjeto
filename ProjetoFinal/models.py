@@ -8,7 +8,13 @@ class NPC(ABC):
         self.ataque=ataque
         self.defesa=defesa   
         self.elemento=elemento
-         
+    
+    def __str__(self):
+        return f"{self.nome} ({self.elemento}) - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa}"
+
+    def __repr__(self):
+        return self.__str__()
+
     @abstractmethod    
     def atacar(self,alvo,dano):
         if alvo.saude>0:   
@@ -31,8 +37,8 @@ class NPCFogo(NPC):
 
 # classes concretas
 class DragonAgua(NPCAgua):
-    def __init__(self):
-       super().__init__("Dragon", 100, 30, 5)
+    def __init__(self, nome, saude, ataque, defesa):
+       super().__init__(nome, saude, ataque, defesa)
     def atacar(self, alvo,dano):
         return super().atacar(alvo,dano)
 class MageAgua(NPCAgua):
