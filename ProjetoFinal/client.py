@@ -1,6 +1,13 @@
 import json
 from abstractfactory import *
+from models import Player
 
+def Create_Player()->Player:
+    nome=input("Qual seu nome Jogador?")
+    saude=input("Quanto de vida você tem?")
+    ataque=input("Quanto a força do seu ataque?")
+    defesa=input("Qual a força da sua defesa?")
+    return Player(nome,saude,ataque,defesa)
 
 json_file=open('ProjetoFinal/arquivo.json')
 dicionario=json.load(json_file)
@@ -15,6 +22,7 @@ for c in dicionario['NPCS']:
         npc=fogoFactory.createNPC(c)
         lista.append(npc)
     
-for c in lista: print(c)
+# for c in lista: print(c)
         
-    
+jogador1=Create_Player()
+print(jogador1)

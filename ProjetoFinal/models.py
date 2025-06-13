@@ -58,3 +58,30 @@ class MageFogo(NPCFogo):
         super().__init__(nome, saude, ataque, defesa)
     def atacar(self, alvo,dano):
         return super().atacar(alvo,dano) 
+
+
+# JOGADOR
+class Player(ABC):
+    def __init__(self,nome,saude,ataque,defesa):
+        self.nome=nome
+        self.saude=saude 
+        self.ataque=ataque
+        self.defesa=defesa   
+    
+    def __str__(self):
+        return f"{self.nome} - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa}"
+
+    def __repr__(self):
+        return self.__str__()
+
+    def atacar(self,alvo):
+        if alvo.saude>0:   
+            alvo.defender() 
+            if alvo.saude-self.ataque>=0:              
+                alvo.saude=alvo.saude-self.ataque
+                print(f"\n{self.nome} atacou {alvo.nome} com {self.ataque} de dano")
+            else:
+                print(f"\n{self.nome} atacou {alvo.nome} que não resistiu ao dano")
+                alvo.saude=0
+    def defender(self):
+        self.saude=self.saude+self.defesa
