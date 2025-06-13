@@ -1,13 +1,15 @@
 import json
-from abstractfactory import *
+from abstractfactory import (AguaFactory,FogoFactory)
 from models import Player
+from decoratorequip import Espada 
 
 def Create_Player()->Player:
-    nome=input("Qual seu nome Jogador?")
-    saude=input("Quanto de vida você tem?")
-    ataque=input("Quanto a força do seu ataque?")
-    defesa=input("Qual a força da sua defesa?")
-    return Player(nome,saude,ataque,defesa)
+    # nome=input("Qual seu nome Jogador?")
+    # saude=input("Quanto de vida você tem?")
+    # ataque=input("Quanto a força do seu ataque?")
+    # defesa=input("Qual a força da sua defesa?")
+    # return Player(nome,saude,ataque,defesa)
+    return Player("tef",100,15,15)
 
 if __name__ == "__main__":
     json_file=open('ProjetoFinal/arquivo.json')
@@ -17,10 +19,10 @@ if __name__ == "__main__":
     lista=[]
     for c in dicionario['NPCS']:
         if c['elemento'] == "agua":
-            npc=aguaFactory.createNPC(c)
+            npc=AguaFactory.createNPC(c)
             lista.append(npc)
         elif c['elemento'] == "fogo":
-            npc=fogoFactory.createNPC(c)
+            npc=FogoFactory.createNPC(c)
             lista.append(npc)
         
     jogador1=Create_Player()
@@ -28,4 +30,9 @@ if __name__ == "__main__":
     print('NPCs')
     for c in lista: 
         print(c)
-            
+
+    equipado=input("Deseja equipar espada?(s/n)")
+    if equipado == "s":
+        espada=Espada(jogador1)
+    print(espada.status)
+    

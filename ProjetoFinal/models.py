@@ -61,13 +61,15 @@ class MageFogo(NPCFogo):
 
 
 # JOGADOR
-class Player(ABC):
+class Player():
     def __init__(self,nome,saude,ataque,defesa):
         self.nome=nome
         self.saude=saude 
         self.ataque=ataque
         self.defesa=defesa   
-    
+    def operation(self) ->str:
+        return "Jogador"
+
     def __str__(self):
         return f"{self.nome} - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa}"
 
