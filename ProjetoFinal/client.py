@@ -1,36 +1,20 @@
 import json
-import os
-from models import (NPC,NPCAgua, NPCFogo, MageAgua, DragonAgua,MageFogo,DragonFogo)
-from abc import ABC,abstractmethod
-class AbstractFactory(ABC):
-    def createDragon(self)-> NPC:
-        pass
-    def createMage(self)-> NPC:
-        pass
-#ELEMENTOS
-class aguaFactory(AbstractFactory):
-    def createDragon() -> NPCAgua:
-        return DragonAgua()
-    def createMage() -> NPCAgua:
-        return MageAgua()
-    def createNPCAgua(tipo):
-        if tipo =='Dragon':
-            return aguaFactory.createDragon()
-        # if tipo == 'Mage':
+from abstractfactory import *
 
 
-
-json_file=open('ProjetoFinal/arquivo.json', mode="r")
-sistema=json.load(json_file)
+json_file=open('ProjetoFinal/arquivo.json')
+dicionario=json.load(json_file)
 json_file.close()
 
-
-for c in sistema["NPCS"]:
+lista=[]
+for c in dicionario['NPCS']:
     if c['elemento'] == "agua":
-        npc1=aguaFactory.createNPCAgua(c['nome'])
+        npc=aguaFactory.createNPC(c)
+        lista.append(npc)
+    elif c['elemento'] == "fogo":
+        npc=fogoFactory.createNPC(c)
+        lista.append(npc)
     
-print(npc1.nome)
-print(npc1.elemento)
-
+for c in lista: print(c)
         
     
