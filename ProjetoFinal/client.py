@@ -9,20 +9,23 @@ def Create_Player()->Player:
     defesa=input("Qual a força da sua defesa?")
     return Player(nome,saude,ataque,defesa)
 
-json_file=open('ProjetoFinal/arquivo.json')
-dicionario=json.load(json_file)
-json_file.close()
+if __name__ == "__main__":
+    json_file=open('ProjetoFinal/arquivo.json')
+    dicionario=json.load(json_file)
+    json_file.close()
 
-lista=[]
-for c in dicionario['NPCS']:
-    if c['elemento'] == "agua":
-        npc=aguaFactory.createNPC(c)
-        lista.append(npc)
-    elif c['elemento'] == "fogo":
-        npc=fogoFactory.createNPC(c)
-        lista.append(npc)
-    
-# for c in lista: print(c)
+    lista=[]
+    for c in dicionario['NPCS']:
+        if c['elemento'] == "agua":
+            npc=aguaFactory.createNPC(c)
+            lista.append(npc)
+        elif c['elemento'] == "fogo":
+            npc=fogoFactory.createNPC(c)
+            lista.append(npc)
         
-jogador1=Create_Player()
-print(jogador1)
+    jogador1=Create_Player()
+    print(jogador1)
+    print('NPCs')
+    for c in lista: 
+        print(c)
+            
