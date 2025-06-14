@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from state import State
 # classe abstrata
 class NPC(ABC):
     def __init__(self,nome,saude,ataque,defesa, elemento):
@@ -62,11 +62,31 @@ class MageFogo(NPCFogo):
 
 # JOGADOR
 class Player():
-    def __init__(self,nome,saude,ataque,defesa):
+    _state= None
+    def __init__(self,nome,saude,ataque,defesa, state: State):
         self.nome=nome
         self.saude=saude 
         self.ataque=ataque
-        self.defesa=defesa   
+        self.defesa=defesa  
+
+        self.transition_to(state)
+    #state
+    def transition_to(self, state: State):
+        """
+        The Context allows changing the State object at runtime.
+        """
+
+        print(f"Context: Transition to {type(state).__name__}")
+        self._state = state
+        self._state.context = self
+
+    def request1(self):
+        self._state.handle1()
+
+    def request2(self):
+        self._state.handle2()
+
+    # decorator
     def operation(self) ->str:
         return "Jogador"
 
