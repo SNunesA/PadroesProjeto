@@ -12,28 +12,31 @@ class State(ABC):
         self._context = context
 
     @abstractmethod
-    def handle1(self) -> None:
+    def atacar(self) -> None:
         pass
 
     @abstractmethod
-    def handle2(self) -> None:
+    def defender(self) -> None:
         pass
 
+
 class Saudavel(State):
-    def handle1(self) -> None:
-        print("ConcreteStateA handles request1.")
-        print("ConcreteStateA wants to change the state of the context.")
-        self.context.transition_to(Envenenado())
+    def atacar(self) -> None :
+        print("atacar")
+        
 
-    def handle2(self) -> None:
-        print("ConcreteStateA handles request2.")
+    def defender(self) -> None:
+        print("defender")
+        self.context.transition_to(EmChamas())
 
 
-class Envenenado(State):
-    def handle1(self) -> None:
-        print("ConcreteStateB handles request1.")
+class EmChamas(State):
+    def atacar(self) -> None:
+        print("ataca mais fraco")
 
-    def handle2(self) -> None:
-        print("ConcreteStateB handles request2.")
-        print("ConcreteStateB wants to change the state of the context.")
+    def defender(self) -> None:
+        print("defende mais fraco")
+        
+    def usarKit(self) -> None:
+        print("usou kit e se curou")
         self.context.transition_to(Saudavel())
