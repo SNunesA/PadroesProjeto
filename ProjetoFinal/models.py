@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from state import State
+from state import (State, Saudavel, EmChamas)
 # classe abstrata
 class NPC(ABC):
     def __init__(self,nome,saude,ataque,defesa, elemento):
@@ -62,40 +62,39 @@ class MageFogo(NPCFogo):
 
 # JOGADOR
 class Player():
+    
     _state= None
-    def __init__(self,nome,saude,ataque,defesa, state: State):
+    
+    def __init__(self,nome,saude,ataque,defesa):
         self.nome=nome
         self.saude=saude 
         self.ataque=ataque
         self.defesa=defesa  
 
-        self.transition_to(state)
+        self.transition_to(Saudavel())
     #state
     def transition_to(self, state: State):
-        """
-        The Context allows changing the State object at runtime.
-        """
 
-        print(f"Context: Transition to {type(state).__name__}")
+        print(f"Mudou de estado para {type(state).__name__}")
         self._state = state
         self._state.context = self
 
     def request1(self):
-        self._state.handle1()
+        self._state.atacar()
 
     def request2(self):
-        self._state.handle2()
+        self._state.defender()
 
     # decorator
     def operation(self) ->str:
         return "Jogador"
 
     def __str__(self):
-        return f"{self.nome} - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa}"
+        return f"{self.nome} - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa} , Estado:{self._state}"
 
     def __repr__(self):
         return self.__str__()
-
+#  --------------------------
     def atacar(self,alvo):
         if alvo.saude>0:   
             alvo.defender() 

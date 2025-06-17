@@ -1,14 +1,14 @@
-from models import Player
+
 from abc import ABC, abstractmethod
 
-class State(ABC):
 
+class State(ABC):
     @property
-    def context(self) -> Player:
+    def context(self) :
         return self._context
 
     @context.setter
-    def context(self, context: Player) -> None:
+    def context(self, context) -> None:
         self._context = context
 
     @abstractmethod

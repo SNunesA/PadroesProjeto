@@ -37,3 +37,5 @@ if __name__ == "__main__":
     print('NPCs')
     for c in lista: 
         print(c)
+        
+    print(jogador1)
