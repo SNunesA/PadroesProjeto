@@ -21,16 +21,16 @@ if __name__ == "__main__":
             npc=FogoFactory.createNPC(c)
             lista.append(npc)
     
-    jogador1=Create_Player(dicionario['Player'][0])
+    player1=Create_Player(dicionario['Player'][0])
 
     escolha=input(f"Escolha apenas um dos equipamentos:\n 1- Kit (+10 saude) \n 2-Armadura (+10 defesa)\n 3-Espada (+10 ataque)\n")
     match escolha:
         case "1":
-            equipado=Kit(jogador1)
+            equipado=Kit(player1)
         case "2":
-            equipado=Armadura(jogador1)
+            equipado=Armadura(player1)
         case "3":
-            equipado=Espada(jogador1)
+            equipado=Espada(player1)
            
     print(equipado.status)
     
@@ -38,4 +38,32 @@ if __name__ == "__main__":
     for c in lista: 
         print(c)
         
-    print(jogador1)
+    print(player1) #arrumar o print do state
+    inimigo1=lista[0]
+    inimigo2=lista[1] 
+        
+    while inimigo1.saude > 0 and inimigo2.saude > 0 and player1.saude > 0:
+        #estrategia do inimigo 1
+        
+        dano=50
+        
+        inimigo1.atacar(player1, dano)
+    
+        if player1.saude==0: break
+        
+        player1.atacar(inimigo1)
+        
+        if inimigo1.saude==0: break 
+        
+        #estrategia do inimigo 2
+        
+        dano=50
+        
+        inimigo2.atacar(player1, dano)
+    
+        if player1.saude==0: break
+        
+        player1.atacar(inimigo2)
+    
+            
+        
