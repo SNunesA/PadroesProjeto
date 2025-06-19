@@ -1,6 +1,6 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 import random
-from __future__ import annotations
 
 
 class AtaqueHandler(ABC):
@@ -20,8 +20,8 @@ class FogoHandler(AtaqueHandler):
     def handle(self, npc, alvo):
         if npc.elemento == "fogo":
             dano=npc.ataque+10
-           
-            npc.atacar(alvo,dano)
+            ataque="Ataque Meteoro"
+            npc.atacar(alvo,dano,ataque)
             
         else:
             super().handle(npc,alvo)
@@ -30,7 +30,8 @@ class AguaHandler(AtaqueHandler):
     def handle(self, npc, alvo):
         if npc.elemento == "agua":
             dano=npc.ataque+10
-            npc.atacar(alvo,dano)
+            ataque="Ataque Tsunami"
+            npc.atacar(alvo,dano,ataque)
             
         else:
             super().handle(npc,alvo)
