@@ -22,12 +22,15 @@ class State(ABC):
 
 class Saudavel(State):
     def atacar(self) -> None :
-        print("atacar")
+        print("atacar com toda força")
+        
         
 
     def defender(self) -> None:
         print("defender")
-        self.context.transition_to(EmChamas())
+        
+        # criar condiçao
+        # self.context.transition_to(EmChamas())
 
 
 class EmChamas(State):
