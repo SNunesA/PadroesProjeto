@@ -31,7 +31,8 @@ class Saudavel(State):
         
         # criar condiçao
         # self.context.transition_to(EmChamas())
-
+    def __str__(self):
+        return "Saudavel"
 
 class EmChamas(State):
     def atacar(self) -> None:
@@ -43,3 +44,6 @@ class EmChamas(State):
     def usarKit(self) -> None:
         print("usou kit e se curou")
         self.context.transition_to(Saudavel())
+        
+    def __str__(self):
+        return "Em Chamas"
