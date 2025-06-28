@@ -1,0 +1,1 @@
+## Padroes de Projeto Utilizados: 1Abstract Factory, 2Decorator, 3State, 4Chain Responsability e 5 
