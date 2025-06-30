@@ -26,7 +26,7 @@ class Kit(EquipamentoDecorator):
     def status(self):
         # Acessando diretamente atributos do objeto decorado
         self._player.saude+=10
-        return f"{self._player.nome} com Kit - Vida: {self._player.saude}, Ataque: {self._player.ataque}, Defesa: {self._player.defesa}"
+        return self._player.__str__(equip='Kit')
 
 
 class Espada(EquipamentoDecorator):
@@ -36,7 +36,7 @@ class Espada(EquipamentoDecorator):
     @property
     def status(self):
         self._player.ataque+=10
-        return f"{self._player.nome} com Espada - Vida: {self._player.saude}, Ataque: {self._player.ataque}, Defesa: {self._player.defesa}"
+        return self._player.__str__(equip='Espada')
 
 class Armadura(EquipamentoDecorator):
     def operation(self) -> str:
@@ -45,4 +45,4 @@ class Armadura(EquipamentoDecorator):
     @property
     def status(self):
         self._player.defesa+=10
-        return f"{self._player.nome} com Armadura - Vida: {self._player.saude}, Ataque: {self._player.ataque}, Defesa: {self._player.defesa}"
+        return self._player.__str__(equip='Armadura')
