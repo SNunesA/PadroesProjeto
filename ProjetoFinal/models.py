@@ -98,8 +98,8 @@ class Player():
     def operation(self) ->str:
         return "Jogador"
 
-    def __str__(self):
-        return f"{self.nome} - Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa} , Estado:{self._state}"
+    def __str__(self,equip=''):
+        return f"{self.nome}  com {equip}- Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa} , Estado:{self._state}"
 
     def __repr__(self):
         return self.__str__()
