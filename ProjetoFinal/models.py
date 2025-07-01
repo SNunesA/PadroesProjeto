@@ -82,13 +82,16 @@ class Player():
     def atacar(self,alvo):
         if alvo.saude>0:   
             alvo.defender() 
+
+            # recebe uma string e um inteiro
+            estado,dano=self._state.atacar()#STATE
+            
             if alvo.saude-self.ataque>=0:              
                 alvo.saude=alvo.saude-self.ataque
-                print(f"\n{self.nome} atacou {alvo.nome} com {self.ataque} de dano")
+                print(f"\n{self.nome} atacou {estado} {alvo.nome} com {self.ataque+dano} de dano")
             else:
                 print(f"\n{self.nome} atacou {alvo.nome} que não resistiu ao dano")
                 alvo.saude=0
-        self._state.atacar()#STATE
 
     def defender(self):
         self.saude=self.saude+self.defesa
