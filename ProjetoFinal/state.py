@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-
+# Player
 class State(ABC):
     @property
     def context(self) :
@@ -22,7 +22,7 @@ class State(ABC):
 
 class Saudavel(State):
     def atacar(self) -> None :
-        print("atacar com toda força")
+        return "agressivamente", 0
         
         
 
@@ -30,16 +30,17 @@ class Saudavel(State):
         print("defender")
         
         # criar condiçao
-        # self.context.transition_to(EmChamas())
+        self.context.transition_to(EmChamas())
     def __str__(self):
         return "Saudavel"
 
 class EmChamas(State):
     def atacar(self) -> None:
-        print("ataca mais fraco")
+        
+        return "brandamente", -4
 
     def defender(self) -> None:
-        print("defende mais fraco")
+        print("defender mais fraco")
         
     def usarKit(self) -> None:
         print("usou kit e se curou")
