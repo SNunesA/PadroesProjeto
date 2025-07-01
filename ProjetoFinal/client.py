@@ -39,7 +39,7 @@ if __name__ == "__main__":
     for c in lista: 
         print(c)
         
-    print(player1) #arrumar o print do state
+    
     inimigo1=lista[0]
     inimigo2=lista[1] 
         
@@ -67,5 +67,7 @@ if __name__ == "__main__":
         
         player1.atacar(inimigo2)
     
-            
+print(f"Saude do {inimigo1.nome}:",inimigo1.saude)
+print(f"Saude do {inimigo2.nome}:",inimigo2.saude)
+print(f"Saude do {player1.nome}:",player1.saude)
         
