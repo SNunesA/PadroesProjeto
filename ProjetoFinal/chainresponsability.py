@@ -19,7 +19,8 @@ class AtaqueHandler(ABC):
 class FogoHandler(AtaqueHandler):
     def handle(self, npc, alvo):
         if npc.elemento == "fogo" and random.randint(1,3)==1:
-            dano=npc.ataque+10
+            # vai lançar um nerf no player
+            dano=npc.ataque
             ataque="Ataque Meteoro"
             npc.atacar(alvo,dano,ataque)
             
@@ -29,6 +30,7 @@ class FogoHandler(AtaqueHandler):
 class AguaHandler(AtaqueHandler):
     def handle(self, npc, alvo):
         if npc.elemento == "agua" and random.randint(1,3)==1:
+            # +10 de dano
             dano=npc.ataque+10
             ataque="Ataque Tsunami"
             npc.atacar(alvo,dano,ataque)
