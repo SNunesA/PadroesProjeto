@@ -2,7 +2,7 @@ import json
 from abstractfactory import (AguaFactory,FogoFactory)
 from models import Player
 from decoratorequip import (Espada, Kit, Armadura) 
-from chainresponsability import(FogoHandler,AguaHandler)
+from chainresponsability import(FogoHandler,AguaHandler, NormalHandler)
 
 def Create_Player(p)->Player:
     nome=input("Qual seu nome Jogador?")
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     
     player1=Create_Player(dicionario['Player'][0])
 
-    escolha=input(f"Escolha apenas um dos equipamentos:\n 1- Kit (+10 saude) \n 2-Armadura (+10 defesa)\n 3-Espada (+10 ataque)\n")
+    escolha=input(f"Escolha apenas um dos equipamentos:\n 1- Poção da Vida (+10 saude) \n 2-Armadura (+10 defesa)\n 3-Espada (+10 ataque)\n")
     match escolha:
         case "1":
             equipado=Kit(player1)
@@ -47,27 +47,28 @@ if __name__ == "__main__":
     # cadeia de ataque
     fogo=FogoHandler()
     agua=AguaHandler()
+    normal=NormalHandler()
     # posso inserir mais ataques depois
-    fogo.set_proximo(agua)
+    fogo.set_proximo(agua).set_proximo(normal)
+    print("Inicio da Batalha")
     while inimigo1.saude > 0 and inimigo2.saude > 0 and player1.saude > 0:
-                
-        # inimigo1.atacar(player1, dano)
+            
         fogo.handle(inimigo1, player1)
     
         if player1.saude==0: break
-        
+
         player1.atacar(inimigo1)
+        
         
         if inimigo1.saude==0: break 
                 
-        # inimigo2.atacar(player1, dano)
         fogo.handle(inimigo2,player1)
     
         if player1.saude==0: break
         
         player1.atacar(inimigo2)
-    
-print(f"Saude do {inimigo1.nome}:",inimigo1.saude)
-print(f"Saude do {inimigo2.nome}:",inimigo2.saude)
-print(f"Saude do {player1.nome}:",player1.saude)
+    print("Fim da Batalha")
+    print(f"Saude do(a) jogador(a) {player1.nome}:",player1.saude)
+    print(f"Saude do {inimigo1.nome}:",inimigo1.saude)  
+    print(f"Saude do {inimigo2.nome}:",inimigo2.saude)
         
