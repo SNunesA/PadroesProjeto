@@ -18,7 +18,7 @@ class NPC(ABC):
     @abstractmethod    
     def atacar(self,alvo,dano,ataque):
         if alvo.saude>0:   
-            if alvo.saude-dano>=0:   #se nao resultar em saude negativa           
+            if alvo.saude-dano>0:   #se nao resultar em saude negativa           
                 print(f"\n{self.nome} lançou {ataque} ao jogador {alvo.nome} com {dano} de dano")
                 nerf=alvo.defender(ataque)     
                 danocomdefesa=dano-(alvo.defesa+nerf)
@@ -64,7 +64,7 @@ class MageFogo(NPCFogo):
 # JOGADOR
 class Player:
     
-    def __init__(self,nome,saude,ataque,defesa,kits=0):
+    def __init__(self,nome,saude,ataque,defesa,kits):
         self.nome=nome
         self.saude=saude 
         self.ataque=ataque
@@ -82,7 +82,7 @@ class Player:
                 self.kits-=1
                 self._state.usarKit(self.nome)
             else:
-                print(f"{self.nome} nao tem mais kits de cura")
+                print(f"{self.nome} nao tem kits de cura")
 
     def atacar(self,alvo):
         if alvo.saude>0:   
@@ -90,7 +90,7 @@ class Player:
             estado,nerf=self._state.atacar()#STATE
             nerf+=self.ataque
             danocomdefesa=nerf-alvo.defesa
-            if alvo.saude-danocomdefesa>=0:              
+            if alvo.saude-danocomdefesa>0:              
                 alvo.saude=alvo.saude-danocomdefesa
                 print(f"\n{self.nome} atacou {estado} {alvo.nome} com {nerf} de dano")
                 alvo.defender() 
@@ -108,7 +108,7 @@ class Player:
         return "Jogador"
 
     def __str__(self,equip=''):
-        return f"{self.nome}  com {equip}- Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa} , Estado:{self._state}"
+        return f"{self.nome}  com {equip}- Vida: {self.saude}, Ataque: {self.ataque}, Defesa: {self.defesa}, Kits:{self.kits}, Estado:{self._state}"
 
     def __repr__(self):
         return self.__str__()
