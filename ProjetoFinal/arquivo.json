@@ -3,4 +3,7 @@
     {"nome":"Dragon", "saude":100, "ataque":30, "defesa":5,"elemento":"agua"},
     {"nome":"Mage", "saude":100, "ataque":15, "defesa":15,"elemento":"fogo"}
     ],
-"Player":[{"saude":220, "ataque":20, "defesa":7}]}
+"Player":[
+    {"classe":"Guerreiro","saude":180, "ataque":25, "defesa":15, "kits":0},
+    {"classe":"Arqueiro","saude":120, "ataque":20, "defesa":20,"kits":2}
+]}
