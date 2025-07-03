@@ -18,31 +18,31 @@ class EquipamentoDecorator(Player):
     def operation(self) -> str:
         return self._player.operation()
 
-class Kit(EquipamentoDecorator):
+class Vida(EquipamentoDecorator):
     def operation(self) -> str:
         print(1)
-        return f"Kit_Equipado({self.player.operation()})"
+        return f"PoçãoVida_Equipado({self.player.operation()})"
     @property
     def status(self):
         # Acessando diretamente atributos do objeto decorado
         self._player.saude+=10
-        return self._player.__str__(equip='Kit')
+        return self._player.__str__(equip='Poção de Vida')
 
 
-class Espada(EquipamentoDecorator):
+class Ataque(EquipamentoDecorator):
     def operation(self) -> str:
         print(1)
-        return f"Espada_Equipada({self.player.operation()})"
+        return f"PoçãoAtaque_Equipada({self.player.operation()})"
     @property
     def status(self):
         self._player.ataque+=10
-        return self._player.__str__(equip='Espada')
+        return self._player.__str__(equip='Poção de Ataque')
 
-class Armadura(EquipamentoDecorator):
+class Defesa(EquipamentoDecorator):
     def operation(self) -> str:
         print(1)
-        return f"Armadura_Equipada({self.player.operation()})"
+        return f"PoçãoDefesa_Equipada({self.player.operation()})"
     @property
     def status(self):
         self._player.defesa+=10
-        return self._player.__str__(equip='Armadura')
+        return self._player.__str__(equip='Poção de Defesa')
