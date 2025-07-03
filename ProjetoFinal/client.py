@@ -1,12 +1,17 @@
 import json
 from abstractfactory import (AguaFactory,FogoFactory)
-from models import Player
-from decoratorequip import (Espada, Kit, Armadura) 
+from builder import PlayerBuilder
+from decoratorequip import (Vida,Defesa,Ataque) 
 from chainresponsability import(FogoHandler,AguaHandler, NormalHandler)
 
-def Create_Player(p)->Player:
-    nome=input("Qual seu nome Jogador?")
-    return Player(nome,**p)
+def criar_jogador(nome,dados):
+    return (PlayerBuilder()
+    .set_nome(nome)
+    .set_saude(dados["saude"])
+    .set_ataque(dados["ataque"])
+    .set_defesa(dados["defesa"])
+    .set_kits(dados["kits"])
+    .build())
 
 if __name__ == "__main__":
     json_file=open('ProjetoFinal/arquivo.json')
@@ -21,17 +26,23 @@ if __name__ == "__main__":
         elif c['elemento'] == "fogo":
             npc=FogoFactory.createNPC(c)
             lista.append(npc)
-    
-    player1=Create_Player(dicionario['Player'][0])
 
-    escolha=input(f"Escolha apenas um dos equipamentos:\n 1- Poção da Vida (+10 saude) \n 2-Armadura (+10 defesa)\n 3-Espada (+10 ataque)\n")
+
+    nome=input("Qual seu nome Jogador?\n")
+    classe=input("Qual classe você deseja? (Guerreiro | Arqueiro)\n")
+    for c in dicionario['Player']:
+        if c['classe'] == classe.capitalize(): 
+            player1=criar_jogador(nome,c)
+    
+    
+    escolha=input(f"Escolha apenas um dos equipamentos:\n 1- Poção da Vida (+10 saude) \n 2-Poção de Defesa (+10 defesa)\n 3-Poção de Ataque (+10 ataque)\n")
     match escolha:
         case "1":
-            equipado=Kit(player1)
+            equipado=Vida(player1)
         case "2":
-            equipado=Armadura(player1)
+            equipado=Defesa(player1)
         case "3":
-            equipado=Espada(player1)
+            equipado=Ataque(player1)
            
     print(equipado.status)
     
@@ -48,7 +59,7 @@ if __name__ == "__main__":
     fogo=FogoHandler()
     agua=AguaHandler()
     normal=NormalHandler()
-    # posso inserir mais ataques depois
+    #ataques
     fogo.set_proximo(agua).set_proximo(normal)
     print("Inicio da Batalha")
     while inimigo1.saude > 0 and inimigo2.saude > 0 and player1.saude > 0:
@@ -69,6 +80,6 @@ if __name__ == "__main__":
         player1.atacar(inimigo2)
     print("Fim da Batalha")
     print(f"Saude do(a) jogador(a) {player1.nome}:",player1.saude)
-    print(f"Saude do {inimigo1.nome}:",inimigo1.saude)  
-    print(f"Saude do {inimigo2.nome}:",inimigo2.saude)
+    print(f"Saude do {inimigo1.nome} de {inimigo1.elemento}:",inimigo1.saude)  
+    print(f"Saude do {inimigo2.nome} de {inimigo2.elemento}:",inimigo2.saude)
         
