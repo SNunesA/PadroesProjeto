@@ -18,15 +18,16 @@ class NPC(ABC):
     @abstractmethod    
     def atacar(self,alvo,dano,ataque):
         if alvo.saude>0:   
-            alvo.defender() 
             if alvo.saude-dano>=0:   #se nao resultar em saude negativa           
-                alvo.saude=alvo.saude-dano
                 print(f"\n{self.nome} lançou {ataque} ao jogador {alvo.nome} com {dano} de dano")
+                nerf=alvo.defender(ataque)     
+                danocomdefesa=dano-(alvo.defesa+nerf)
+                alvo.saude-=danocomdefesa
             else:
                 print(f"\n{self.nome} lançou {ataque} ao jogador {alvo.nome} que não resistiu ao dano")
                 alvo.saude=0
     def defender(self):
-        self.saude=self.saude+self.defesa
+        print(f'{self.nome} usou sua magia de {self.defesa} pontos de defesa')
 
 class NPCAgua(NPC):
     def __init__(self, nome, saude, ataque, defesa):
@@ -70,33 +71,40 @@ class Player():
         self.saude=saude 
         self.ataque=ataque
         self.defesa=defesa  
-
+        # iniciando no estado saudavel
         self.transition_to(Saudavel())
+        self.kits=1
     #state
     def transition_to(self, state: State):
-
-        print(f"Mudou de estado para {type(state).__name__}")
         self._state = state
         self._state.context = self
+        if isinstance(state, EmChamas):
+            print(f"{self.nome} sofreu um ataque de fogo e está {type(state).__name__}")
+            if self.kits>0:
+                self.kits-=1
+                self._state.usarKit(self.nome)
+            else:
+                print(f"{self.nome} nao tem mais kits de cura")
 
     def atacar(self,alvo):
         if alvo.saude>0:   
-            alvo.defender() 
-
             # recebe uma string e um inteiro
-            estado,dano=self._state.atacar()#STATE
-            
-            if alvo.saude-self.ataque>=0:              
-                alvo.saude=alvo.saude-self.ataque
-                print(f"\n{self.nome} atacou {estado} {alvo.nome} com {self.ataque+dano} de dano")
+            estado,nerf=self._state.atacar()#STATE
+            nerf+=self.ataque
+            danocomdefesa=nerf-alvo.defesa
+            if alvo.saude-danocomdefesa>=0:              
+                alvo.saude=alvo.saude-danocomdefesa
+                print(f"\n{self.nome} atacou {estado} {alvo.nome} com {nerf} de dano")
+                alvo.defender() 
             else:
                 print(f"\n{self.nome} atacou {alvo.nome} que não resistiu ao dano")
                 alvo.saude=0
 
-    def defender(self):
-        self.saude=self.saude+self.defesa
-        self._state.defender()#STATE
-
+    def defender(self, ataque):
+        nerf=self._state.defender(ataque)#STATE
+        print(f'{self.nome} usou seu escudo de {self.defesa+nerf} pontos de defesa')
+        return nerf
+    
     # decorator
     def operation(self) ->str:
         return "Jogador"
