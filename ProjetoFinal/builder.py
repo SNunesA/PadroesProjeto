@@ -1,13 +1,14 @@
 from models import Player
 from state import Saudavel
+
 class PlayerBuilder:
     
-    def __init__(self, nome, saude, ataque, defesa, kits=1):
-        self.nome = nome
-        self.saude = saude
-        self.ataque = ataque
-        self.defesa = defesa
-        self.kits = kits
+    def __init__(self):
+        self.nome = "Jogador padrão"
+        self.saude = None
+        self.ataque = None
+        self.defesa = None
+        self.kits = None
         self.estado_inicial = Saudavel()
         
     def set_nome(self, nome):
@@ -39,8 +40,8 @@ class PlayerBuilder:
             nome=self.nome,
             saude=self.saude,
             ataque=self.ataque,
-            defesa=self.defesa
+            defesa=self.defesa,
+            kits=self.kits
         )
-        player.kits = self.kits
         player.transition_to(self.estado_inicial)
         return player
