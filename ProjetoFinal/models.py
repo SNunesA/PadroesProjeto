@@ -62,18 +62,16 @@ class MageFogo(NPCFogo):
 
 
 # JOGADOR
-class Player():
+class Player:
     
-    _state= None
-    
-    def __init__(self,nome,saude,ataque,defesa):
+    def __init__(self,nome,saude,ataque,defesa,kits=0):
         self.nome=nome
         self.saude=saude 
         self.ataque=ataque
         self.defesa=defesa  
+        self.kits=kits
         # iniciando no estado saudavel
-        self.transition_to(Saudavel())
-        self.kits=1
+        self._state = None        
     #state
     def transition_to(self, state: State):
         self._state = state
