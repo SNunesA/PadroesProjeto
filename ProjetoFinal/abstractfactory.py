@@ -7,7 +7,7 @@ class AbstractFactory(ABC):
         pass
 #ELEMENTOS
 class AguaFactory(AbstractFactory):
-    def createNPC(dic) -> NPCAgua:
+    def createNPC(self,dic) -> NPC:
         params = {k: dic[k] for k in ("nome", "saude", "ataque", "defesa")}
         if dic['nome'] =='Dragon':
             return DragonAgua(**params)
@@ -15,7 +15,7 @@ class AguaFactory(AbstractFactory):
             return MageAgua(**params)
         
 class FogoFactory(AbstractFactory):
-    def createNPC(dic) -> NPCFogo:
+    def createNPC(self,dic) -> NPC:
         params = {k: dic[k] for k in ("nome", "saude", "ataque", "defesa")}
         if dic['nome'] =='Dragon':
             return DragonFogo(**params)
