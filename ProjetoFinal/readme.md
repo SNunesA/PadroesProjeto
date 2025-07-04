@@ -1,6 +1,7 @@
 ## Padroes de Projeto Utilizados: 
 ### 1. **Abstract Factory**
 📁 Arquivo abstractfactory.py
+
 Responsável por **criar famílias de NPCs** com diferentes elementos (ex: fogo, água), sem depender das classes concretas.
 
 - A `AbstractFactory` define a interface `createNPC`.
