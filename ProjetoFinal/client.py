@@ -19,12 +19,14 @@ if __name__ == "__main__":
     json_file.close()
 
     lista=[]
+    agua_factory = AguaFactory()
+    fogo_factory = FogoFactory()
     for c in dicionario['NPCS']:
         if c['elemento'] == "agua":
-            npc=AguaFactory.createNPC(c)
+            npc = agua_factory.createNPC(c)
             lista.append(npc)
         elif c['elemento'] == "fogo":
-            npc=FogoFactory.createNPC(c)
+            npc=fogo_factory.createNPC(c)
             lista.append(npc)
 
 
