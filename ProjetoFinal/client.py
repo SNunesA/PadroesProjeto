@@ -4,6 +4,10 @@ from builder import PlayerBuilder
 from decoratorequip import (Vida,Defesa,Ataque) 
 from chainresponsability import(FogoHandler,AguaHandler, NormalHandler)
 
+# estilo
+from colorama import init, Fore, Style
+init()
+
 def criar_jogador(nome,dados):
     return (PlayerBuilder()
     .set_nome(nome)
@@ -63,7 +67,7 @@ if __name__ == "__main__":
     normal=NormalHandler()
     #ataques
     fogo.set_proximo(agua).set_proximo(normal)
-    print("Inicio da Batalha")
+    print(f"{Fore.LIGHTGREEN_EX}Inicio da Batalha{Style.RESET_ALL}")
     while inimigo1.saude > 0 and inimigo2.saude > 0 and player1.saude > 0:
             
         fogo.handle(inimigo1, player1)
@@ -80,7 +84,7 @@ if __name__ == "__main__":
         if player1.saude==0: break
         
         player1.atacar(inimigo2)
-    print("Fim da Batalha")
+    print(f"{Fore.LIGHTGREEN_EX}Fim da Batalha{Style.RESET_ALL}")
     print(f"Saude do(a) jogador(a) {player1.nome}:",player1.saude)
     print(f"Saude do {inimigo1.nome} de {inimigo1.elemento}:",inimigo1.saude)  
     print(f"Saude do {inimigo2.nome} de {inimigo2.elemento}:",inimigo2.saude)

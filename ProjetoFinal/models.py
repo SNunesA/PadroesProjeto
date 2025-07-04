@@ -1,5 +1,11 @@
 from abc import ABC, abstractmethod
 from state import (State, Saudavel, EmChamas)
+
+# estilo
+from colorama import init, Fore, Style
+init()
+from time import sleep
+
 # classe abstrata
 class NPC(ABC):
     def __init__(self,nome,saude,ataque,defesa, elemento):
@@ -19,15 +25,16 @@ class NPC(ABC):
     def atacar(self,alvo,dano,ataque):
         if alvo.saude>0:   
             if alvo.saude-dano>0:   #se nao resultar em saude negativa           
-                print(f"\n{self.nome} lançou {ataque} ao jogador {alvo.nome} com {dano} de dano")
+                print(f"\n{Fore.RED}{self.nome} lançou {ataque} ao jogador {alvo.nome} com {dano} de dano{Style.RESET_ALL}")
+                sleep(0.5)
                 nerf=alvo.defender(ataque)     
                 danocomdefesa=dano-(alvo.defesa+nerf)
                 alvo.saude-=danocomdefesa
             else:
-                print(f"\n{self.nome} lançou {ataque} ao jogador {alvo.nome} que não resistiu ao dano")
+                print(f"\n{Fore.RED}{self.nome} lançou {ataque} ao jogador {alvo.nome} que não resistiu ao dano{Style.RESET_ALL}")
                 alvo.saude=0
     def defender(self):
-        print(f'{self.nome} usou sua magia de {self.defesa} pontos de defesa')
+        print(f'{Fore.LIGHTYELLOW_EX}{self.nome} usou sua magia de {self.defesa} pontos de defesa{Style.RESET_ALL}')
 
 class NPCAgua(NPC):
     def __init__(self, nome, saude, ataque, defesa):
@@ -77,7 +84,7 @@ class Player:
         self._state = state
         self._state.context = self
         if isinstance(state, EmChamas):
-            print(f"{self.nome} sofreu um ataque de fogo e está {type(state).__name__}")
+            print(f"{Fore.MAGENTA}{self.nome} sofreu um ataque de fogo e está {type(state).__name__}{Style.RESET_ALL}")
             if self.kits>0:
                 self.kits-=1
                 self._state.usarKit(self.nome)
@@ -92,15 +99,16 @@ class Player:
             danocomdefesa=nerf-alvo.defesa
             if alvo.saude-danocomdefesa>0:              
                 alvo.saude=alvo.saude-danocomdefesa
-                print(f"\n{self.nome} atacou {estado} {alvo.nome} com {nerf} de dano")
+                print(f"\n{Fore.BLUE}{self.nome} atacou {estado} {alvo.nome} com {nerf} de dano{Style.RESET_ALL}")
+                sleep(0.5)
                 alvo.defender() 
             else:
-                print(f"\n{self.nome} atacou {alvo.nome} que não resistiu ao dano")
+                print(f"\n{Fore.BLUE}{self.nome} atacou {alvo.nome} que não resistiu ao dano{Style.RESET_ALL}")
                 alvo.saude=0
 
     def defender(self, ataque):
         nerf=self._state.defender(ataque)#STATE
-        print(f'{self.nome} usou seu escudo de {self.defesa+nerf} pontos de defesa')
+        print(f'{Fore.LIGHTYELLOW_EX}{self.nome} usou seu escudo de {self.defesa+nerf} pontos de defesa{Style.RESET_ALL}')
         return nerf
     
     # decorator
