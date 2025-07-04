@@ -3,7 +3,7 @@ from abstractfactory import (AguaFactory,FogoFactory)
 from builder import PlayerBuilder
 from decoratorequip import (Vida,Defesa,Ataque) 
 from chainresponsability import(FogoHandler,AguaHandler, NormalHandler)
-
+import random
 # estilo
 from colorama import init, Fore, Style
 init()
@@ -51,15 +51,14 @@ if __name__ == "__main__":
             equipado=Ataque(player1)
            
     print(equipado.status)
+        
     
     print('NPCs')
-    for c in lista: 
-        print(c)
-        
-    
-    inimigo1=lista[0]
-    inimigo2=lista[1] 
-        
+    quantid=random.randint(0,len(lista)-1)
+    inimigo1=lista[random.randint(0,quantid)]
+    inimigo2=lista[random.randint(0,quantid)] 
+    print(inimigo1)
+    print(inimigo2)
         
     # cadeia de ataque
     fogo=FogoHandler()
