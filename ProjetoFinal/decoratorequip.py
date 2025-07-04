@@ -1,5 +1,5 @@
 from models import Player
-
+# Abstrai: o acréscimo de funcionalidades a um objeto de forma flexível e dinâmica, sem alterar sua estrutura original.
 
 class EquipamentoDecorator(Player):
     _player: Player = None

@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 import random
 
-
+# Abstrai: o envio de uma solicitação por uma cadeia de objetos, onde cada um pode processá-la ou passá-la adiante.
 class AtaqueHandler(ABC):
     def __init__(self):
         self._proximo=None

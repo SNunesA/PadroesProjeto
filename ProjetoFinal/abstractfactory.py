@@ -1,6 +1,6 @@
 from models import (NPC,NPCAgua, NPCFogo, MageAgua, DragonAgua,MageFogo,DragonFogo)
 from abc import ABC,abstractmethod
-
+# Abstrai: a criação de famílias de objetos relacionados sem especificar suas classes concretas.
 class AbstractFactory(ABC):
     @abstractmethod
     def createNPC(self) -> NPC:

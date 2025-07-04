@@ -1,6 +1,6 @@
 from models import Player
 from state import Saudavel
-
+# Abstrai: a construção passo a passo de objetos complexos, separando sua construção de sua representação.
 class PlayerBuilder:
     
     def __init__(self):

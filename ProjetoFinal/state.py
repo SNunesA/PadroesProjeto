@@ -1,6 +1,6 @@
 
 from abc import ABC, abstractmethod
-
+#  Abstrai: a variação de comportamento de um objeto de acordo com seu estado interno.
 # Player
 class State(ABC):
     @property
